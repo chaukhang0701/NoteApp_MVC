@@ -1,0 +1,772 @@
+/* =============================================
+   NoteApp - Main Stylesheet
+   ============================================= */
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ===== DARK MODE ===== */
+[data-theme="dark"] body {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+[data-theme="dark"] .card {
+    background-color: #16213e;
+    border-color: #0f3460;
+    color: #e0e0e0;
+}
+[data-theme="dark"] .navbar {
+    background-color: #16213e !important;
+}
+[data-theme="dark"] .sidebar {
+    background-color: #16213e !important;
+}
+[data-theme="dark"] .list-group-item {
+    background-color: #16213e;
+    border-color: #0f3460;
+    color: #e0e0e0;
+}
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    background-color: #0f3460;
+    border-color: #1a4a7a;
+    color: #e0e0e0;
+}
+[data-theme="dark"] .form-control::placeholder { color: #8899aa; }
+[data-theme="dark"] .form-control:focus {
+    background-color: #0f3460;
+    color: #e0e0e0;
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+}
+[data-theme="dark"] .btn-light {
+    background-color: #0f3460;
+    border-color: #1a4a7a;
+    color: #e0e0e0;
+}
+[data-theme="dark"] .btn-outline-secondary { color: #aab; border-color: #aab; }
+[data-theme="dark"] .text-muted { color: #8899aa !important; }
+[data-theme="dark"] .modal-content { background-color: #16213e; color: #e0e0e0; }
+[data-theme="dark"] .dropdown-menu { background-color: #16213e; border-color: #0f3460; }
+[data-theme="dark"] .dropdown-item { color: #e0e0e0; }
+[data-theme="dark"] .dropdown-item:hover { background-color: #0f3460; }
+[data-theme="dark"] hr { border-color: #0f3460; }
+[data-theme="dark"] .alert { border-color: #0f3460; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.05); }
+}
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.fade-in    { animation: fadeIn 0.4s ease forwards; }
+.slide-in   { animation: slideInRight 0.3s ease forwards; }
+
+/* ===== NAVBAR ===== */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    z-index: 1000;
+}
+.navbar-brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+#live-search {
+    min-width: 200px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transition: all 0.3s;
+}
+#live-search::placeholder { color: rgba(255,255,255,0.6); }
+#live-search:focus {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.5);
+    box-shadow: none;
+    color: white;
+    min-width: 280px;
+}
+
+/* ===== LANDING PAGE ===== */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+.hero-section h1,
+.hero-section p { color: white; }
+
+/* ===== MAIN WRAPPER ===== */
+.main-wrapper {
+    min-height: calc(100vh - 56px - 60px);
+    padding-bottom: 40px;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    position: sticky;
+    top: 76px;
+    height: fit-content;
+}
+.sidebar .btn {
+    font-size: 0.85rem;
+    border-radius: 8px;
+}
+
+/* ===== NOTE CARDS ===== */
+.note-card {
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    cursor: pointer;
+}
+.note-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12) !important;
+}
+.note-card .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+.note-card .card-footer {
+    background: transparent;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.8rem;
+}
+[data-theme="dark"] .note-card {
+    background-color: #16213e;
+    border-color: #0f3460;
+}
+[data-theme="dark"] .note-card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+}
+[data-theme="dark"] .note-card .card-footer { border-color: #0f3460; }
+
+/* ===== LIST VIEW ===== */
+#notes-list .list-group-item,
+#notes-list-pinned .list-group-item {
+    border-radius: 8px !important;
+    margin-bottom: 6px;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: background-color 0.2s, transform 0.2s;
+}
+#notes-list .list-group-item:hover,
+#notes-list-pinned .list-group-item:hover {
+    background-color: #f0f4ff;
+    transform: translateX(4px);
+}
+[data-theme="dark"] #notes-list .list-group-item:hover,
+[data-theme="dark"] #notes-list-pinned .list-group-item:hover {
+    background-color: #0f3460;
+}
+
+/* ===== EDITOR ===== */
+#note_title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    outline: none;
+    box-shadow: none !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+#note_title:focus {
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+#note_content {
+    font-size: 1rem;
+    line-height: 1.8;
+    outline: none;
+    box-shadow: none !important;
+    resize: none;
+    min-height: 300px;
+}
+#note_content:focus {
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+#save-status { font-size: 0.8rem; transition: color 0.3s; }
+.label-btn {
+    border-radius: 20px;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+.label-btn:hover { transform: scale(1.05); }
+.image-item { transition: opacity 0.2s; }
+.image-item:hover { opacity: 0.85; }
+.image-item img {
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+.image-item:hover img { border-color: #667eea; }
+
+/* ===== AUTH PAGES ===== */
+.auth-card {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+.auth-brand {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #667eea;
+}
+.btn-auth {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.btn-auth:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* ===== PROFILE ===== */
+#avatar-wrapper img,
+#avatar-preview {
+    border: 3px solid #667eea;
+    transition: opacity 0.3s;
+}
+#avatar-wrapper:hover img { opacity: 0.85; }
+
+/* ===== LABELS PAGE ===== */
+.label-item {
+    transition: background-color 0.2s;
+    border-radius: 8px;
+}
+.label-item:hover { background-color: #f8f9fa; }
+[data-theme="dark"] .label-item:hover { background-color: #0f3460; }
+
+/* ===== SHARED NOTES ===== */
+.shared-item { transition: transform 0.2s, box-shadow 0.2s; }
+.shared-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background-color: #212529;
+    color: #adb5bd;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #667eea; }
+[data-theme="dark"] ::-webkit-scrollbar-track { background: #1a1a2e; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #0f3460; }
+
+/* ===== UTILITIES ===== */
+.cursor-pointer { cursor: pointer; }
+.text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.rounded-12 { border-radius: 12px; }
+.rounded-20 { border-radius: 20px; }
+
+/* Focus ring */
+.form-control:focus,
+.form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+}
+
+/* Button primary */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+}
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5a6fd6, #6a3f94);
+    border: none;
+}
+.badge-pill { border-radius: 20px; padding: 5px 12px; }
+
+/* =============================================
+   TIÊU CHÍ 25 — UI/UX ENHANCEMENTS
+   ============================================= */
+
+/* ── Loading skeleton (feedback khi tải) ── */
+.skeleton {
+    background: linear-gradient(90deg, #e9ecef 25%, #f8f9fa 50%, #e9ecef 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 6px;
+}
+[data-theme="dark"] .skeleton {
+    background: linear-gradient(90deg, #0f3460 25%, #16213e 50%, #0f3460 75%);
+    background-size: 200% 100%;
+}
+
+/* ── Toast notifications (feedback rõ ràng) ── */
+.toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+}
+.toast {
+    min-width: 280px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    font-size: 0.9rem;
+}
+
+/* ── Empty state ── */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #adb5bd;
+}
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+.empty-state h5 { color: #6c757d; margin-bottom: 0.5rem; }
+
+/* ── Button loading state ── */
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.75;
+}
+.btn-loading::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── Form validation feedback ── */
+.form-control.is-valid   { border-color: #198754; }
+.form-control.is-invalid { border-color: #dc3545; }
+.invalid-feedback { font-size: 0.8rem; color: #dc3545; display: block; }
+.valid-feedback   { font-size: 0.8rem; color: #198754; display: block; }
+
+/* ── Tooltip cải thiện ── */
+[title] { cursor: help; }
+button[title] { cursor: pointer; }
+
+/* ── Focus visible cho accessibility ── */
+:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* ── Skip to content (accessibility) ── */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    background: #667eea;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 0 0 8px 8px;
+    font-weight: 600;
+    z-index: 9999;
+    transition: top 0.2s;
+}
+.skip-link:focus { top: 0; color: white; }
+
+/* ── Card active state ── */
+.note-card.active,
+.note-card:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* ── Smooth page transitions ── */
+.page-transition {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* ── Input group polish ── */
+.input-group .form-control:not(:last-child) {
+    border-right: 0;
+}
+.input-group .form-control:focus {
+    z-index: 3;
+}
+
+/* ── Badge improvements ── */
+.badge {
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* ── Divider with text ── */
+.divider-text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #adb5bd;
+    font-size: 0.85rem;
+    margin: 1rem 0;
+}
+.divider-text::before,
+.divider-text::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #dee2e6;
+}
+[data-theme="dark"] .divider-text::before,
+[data-theme="dark"] .divider-text::after {
+    background: #0f3460;
+}
+
+/* ── Password strength indicator ── */
+.password-strength {
+    height: 4px;
+    border-radius: 2px;
+    transition: width 0.3s, background-color 0.3s;
+    margin-top: 6px;
+}
+.strength-weak   { width: 33%; background: #dc3545; }
+.strength-medium { width: 66%; background: #ffc107; }
+.strength-strong { width: 100%; background: #198754; }
+
+/* ── Hover action buttons trên note card ── */
+.note-card .card-footer .btn {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.note-card:hover .card-footer .btn { opacity: 1; }
+
+/* ── Search highlight ── */
+.search-highlight {
+    background: rgba(102,126,234,0.2);
+    border-radius: 3px;
+    padding: 0 2px;
+    font-weight: 600;
+}
+
+/* ── Share/Lock badge trên note ── */
+.note-status-badges {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.note-status-badges .badge {
+    font-size: 0.7rem;
+    padding: 3px 7px;
+    border-radius: 20px;
+}
+
+/* =============================================
+   TIÊU CHÍ 26 — RESPONSIVE
+   ============================================= */
+
+/* ── Desktop lớn (≥1200px) ── */
+@media (min-width: 1200px) {
+    .container-fluid { max-width: 1400px; }
+    #live-search { min-width: 300px; }
+    #live-search:focus { min-width: 380px; }
+}
+
+/* ── Tablet (≤992px) ── */
+@media (max-width: 992px) {
+    /* Sidebar thu gọn */
+    .sidebar {
+        position: static;
+        margin-bottom: 1rem;
+    }
+
+    /* Note grid 3 cột → 2 cột */
+    .row-cols-lg-4 > * { flex: 0 0 33.33%; max-width: 33.33%; }
+
+    /* Editor căn giữa */
+    .col-lg-8 { padding: 0 1rem; }
+}
+
+/* ── Tablet nhỏ (≤768px) ── */
+@media (max-width: 768px) {
+    /* Navbar search */
+    #live-search { min-width: 140px; }
+    #live-search:focus { min-width: 180px; }
+
+    /* Note grid 2 cột */
+    .row-cols-md-3 > * { flex: 0 0 50%; max-width: 50%; }
+
+    /* Sidebar ẩn */
+    .sidebar { display: none !important; }
+
+    /* Editor */
+    #note_title { font-size: 1.3rem; }
+    #note_content { min-height: 200px; }
+
+    /* Hero */
+    .hero-section { padding-top: 100px; }
+    .hero-section h1 { font-size: 2rem; }
+
+    /* Toolbar co lại */
+    .d-flex.gap-2.flex-wrap { gap: 6px !important; }
+
+    /* Auth card padding */
+    .auth-card .card-body { padding: 1.75rem !important; }
+
+    /* Profile layout dọc */
+    .profile-layout { flex-direction: column; }
+
+    /* Table responsive */
+    .table-responsive-md { overflow-x: auto; }
+}
+
+/* ── Mobile (≤576px) ── */
+@media (max-width: 576px) {
+    /* Note grid 1 cột */
+    .row-cols-2 > *,
+    .row-cols-md-3 > *,
+    .row-cols-lg-4 > * {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* Navbar */
+    .navbar-brand { font-size: 1.1rem; }
+
+    /* Ẩn text giữ icon trên navbar mobile */
+    .navbar .nav-link span { display: none; }
+
+    /* Auth card full */
+    .auth-card { border-radius: 0; box-shadow: none; }
+    .auth-card .card-body { padding: 1.5rem !important; }
+
+    /* Editor toolbar xuống dòng */
+    .editor-toolbar {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .editor-toolbar .btn { font-size: 0.8rem; padding: 4px 8px; }
+
+    /* Hero */
+    .hero-section h1 { font-size: 1.6rem; }
+    .hero-section p  { font-size: 0.95rem; }
+
+    /* Modal full width */
+    .modal-dialog { margin: 0.5rem; }
+    .modal-content { border-radius: 12px; }
+
+    /* Profile avatar nhỏ lại */
+    #avatar-wrapper img { width: 90px; height: 90px; }
+
+    /* Nút share / action thu gọn */
+    .share-actions { flex-direction: column; }
+    .share-actions .btn { width: 100%; }
+
+    /* Toast full width */
+    .toast-container {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+    .toast { min-width: unset; width: 100%; }
+
+    /* Editor card padding */
+    .card-body.p-4 { padding: 1rem !important; }
+
+    /* Breadcrumb ẩn trên mobile nhỏ */
+    .breadcrumb { font-size: 0.8rem; }
+
+    /* Save status text ngắn */
+    #save-status { font-size: 0.75rem; }
+
+    /* Note card footer hiện nút luôn (không cần hover trên mobile) */
+    .note-card .card-footer .btn { opacity: 1; }
+}
+
+/* ── Print (ẩn navbar khi in) ── */
+@media print {
+    .navbar, .sidebar, .footer,
+    .btn, #save-status { display: none !important; }
+    .main-wrapper { padding: 0; }
+    .card { box-shadow: none; border: 1px solid #dee2e6; }
+}
+/* =============================================
+   FIX NAVBAR COLLAPSE MOBILE/TABLET
+   ============================================= */
+
+/* Khi navbar collapse mở ra */
+@media (max-width: 991px) {
+
+    /* Container của các nav items */
+    .navbar-collapse {
+        background-color: #212529;
+        border-radius: 0 0 12px 12px;
+        padding: 12px 16px 16px;
+        margin-top: 8px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    [data-theme="dark"] .navbar-collapse {
+        background-color: #16213e;
+    }
+
+    /* Search bar — full width khi collapse */
+    .navbar-collapse .mx-auto {
+        width: 100% !important;
+        margin: 0 0 12px 0 !important;
+    }
+
+    .navbar-collapse #live-search {
+        min-width: 100% !important;
+        width: 100%;
+    }
+
+    /* Nav items căn trái, không dùng gap */
+    .navbar-collapse .navbar-nav {
+        align-items: flex-start !important;
+        gap: 4px !important;
+        width: 100%;
+    }
+
+    /* Từng nav item full width */
+    .navbar-collapse .nav-item {
+        width: 100%;
+    }
+
+    /* Nav link padding đều */
+    .navbar-collapse .nav-link {
+        padding: 8px 12px !important;
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .navbar-collapse .nav-link:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    /* View toggle buttons full width */
+    .navbar-collapse #view-toggle {
+        width: 100%;
+        display: flex !important;
+    }
+
+    .navbar-collapse #view-toggle .btn {
+        flex: 1;
+    }
+
+    /* Theme toggle full width */
+    .navbar-collapse #theme-toggle {
+        width: 100%;
+        text-align: left;
+        padding: 8px 12px;
+    }
+
+    /* Dropdown menu căn chỉnh */
+    .navbar-collapse .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        width: 100%;
+        margin-top: 4px;
+        border-radius: 8px;
+        box-shadow: none;
+        border: 1px solid rgba(255,255,255,0.1);
+        background-color: rgba(255,255,255,0.05);
+    }
+
+    [data-theme="dark"] .navbar-collapse .dropdown-menu {
+        background-color: rgba(15,52,96,0.5);
+        border-color: #0f3460;
+    }
+
+    .navbar-collapse .dropdown-item {
+        color: #e0e0e0;
+        border-radius: 6px;
+        padding: 8px 12px;
+    }
+
+    .navbar-collapse .dropdown-item:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    /* Avatar dropdown toggle */
+    .navbar-collapse .dropdown-toggle {
+        width: 100%;
+        padding: 8px 12px !important;
+        border-radius: 8px;
+    }
+
+    .navbar-collapse .dropdown-toggle:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    /* Divider trong dropdown */
+    .navbar-collapse .dropdown-divider {
+        border-color: rgba(255,255,255,0.1);
+    }
+
+    /* Share icon căn trái */
+    .navbar-collapse .nav-link[title] {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .navbar-collapse .nav-link[title]::after {
+        content: attr(title);
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "name": "NoteApp - Quản lý ghi chú",
+    "short_name": "NoteApp",
+    "description": "Ứng dụng quản lý ghi chú thông minh",
+    "start_url": "/notes",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#667eea",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src":"/Final_Project/public/uploads/images/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/uploads/images/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["productivity", "utilities"],
+    "lang": "vi"
+}
